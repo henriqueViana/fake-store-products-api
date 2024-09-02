@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./.docker/development
+    command: npm run start:dev
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - mysql
+    environment:
+      - NODE_ENV=development
+
+  rabbitmq:
+    image: rabbitmq:3.6-management
+    container_name: ms-products-rabbitmq
+    restart: always
+    ports: 
+      - "5672:5672"
+      - "15672:15672"
+
+  mongodb:
+    image: mongo:latest
+    container_name: ms-products-mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+  
+  mysql:
+    image: mysql:latest
+    container_name: ms-products-mysql
+    ports:
+      - "3306:3306"
