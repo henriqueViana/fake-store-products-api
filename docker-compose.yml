@@ -3,9 +3,12 @@ version: '3.8'
 services:
   app:
     build: .
-    command: npm run start:dev
+    command: yarn start:dev
     ports:
       - 3000:3000
+    volumes: 
+      - .:/app
+      - /app/node_modules
     depends_on:
       - rabbitmq
       - mongodb
@@ -19,6 +22,10 @@ services:
     ports: 
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      retries: 5
 
   mongodb:
     image: mongo:latest
@@ -26,3 +33,7 @@ services:
     restart: always
     ports:
       - "27017:27017"
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      retries: 5
