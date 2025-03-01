@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   app:
-    build: ./.docker/development
+    build: .
     command: npm run start:dev
     ports:
       - 3000:3000
     depends_on:
+      - rabbitmq
       - mongodb
-      - mysql
     environment:
       - NODE_ENV=development
 
@@ -26,9 +26,3 @@ services:
     restart: always
     ports:
       - "27017:27017"
-  
-  mysql:
-    image: mysql:latest
-    container_name: ms-products-mysql
-    ports:
-      - "3306:3306"
