@@ -4,7 +4,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { join } from 'path'
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductModule } from './product/application/http/product.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
