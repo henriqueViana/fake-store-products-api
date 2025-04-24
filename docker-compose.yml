@@ -14,6 +14,8 @@ services:
       - mongodb
     environment:
       - NODE_ENV=development
+    networks:
+      - ms-product-network
 
   rabbitmq:
     image: rabbitmq:3.6-management
@@ -26,6 +28,8 @@ services:
       test: ["CMD", "rabbitmqctl", "status"]
       interval: 10s
       retries: 5
+    networks:
+      - ms-product-network
 
   mongodb:
     image: mongo:latest
@@ -37,3 +41,12 @@ services:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       interval: 10s
       retries: 5
+    networks:
+      - ms-product-network
+
+networks:
+  ms-product-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.10.0/24
