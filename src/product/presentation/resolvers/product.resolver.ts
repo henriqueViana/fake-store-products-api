@@ -1,5 +1,6 @@
 import { Args, Query, Resolver } from "@nestjs/graphql";
 import { IGetProductBySkuUseCase } from "../../application/use-cases/get-product-by-sku.interface";
+import { Product } from "../../../product/domain/entities/product.entity";
 
 @Resolver('Product')
 export class ProductResolver {
@@ -7,8 +8,8 @@ export class ProductResolver {
     private readonly productUseCase: IGetProductBySkuUseCase
   ) {}
 
-  @Query(() => String)
-  getProductBySku(@Args('sku') sku: string): Promise<string> {
+  @Query(() => Product)
+  getProductBySku(@Args('sku') sku: string): Promise<Product> {
     return this.productUseCase.execute(sku)
   }
 }
