@@ -2,7 +2,7 @@ FROM node:21
 
 WORKDIR /app
 
-COPY package*.json .
+COPY package.json yarn.lock ./
 
 RUN yarn global add @nestjs/cli@10.0.0
 

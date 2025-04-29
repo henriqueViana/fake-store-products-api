@@ -41,6 +41,11 @@ services:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
       interval: 10s
       retries: 5
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - mongo_data:/data/db
     networks:
       - ms-product-network
 
@@ -50,3 +55,6 @@ networks:
     ipam:
       config:
         - subnet: 192.168.10.0/24
+
+volumes:
+  mongo_data:
