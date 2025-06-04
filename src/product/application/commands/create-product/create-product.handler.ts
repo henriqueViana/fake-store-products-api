@@ -4,7 +4,6 @@ import { CreateProductCommand } from "./create-product.command";
 import { InjectModel } from '@nestjs/mongoose';
 import { Product, ProductDocument } from '../../../domain/entities/product.entity';
 import { Model } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
 
 @CommandHandler(CreateProductCommand)
 export class CreateProductHandler implements ICommandHandler<CreateProductCommand> {
