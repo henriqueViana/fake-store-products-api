@@ -1,20 +1,20 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
-import { CommandBus } from "@nestjs/cqrs";
-import { IGetProductBySkuUseCase } from "../../application/use-cases/get-product-by-sku.interface";
+import { CommandBus, QueryBus } from "@nestjs/cqrs";
 import { Product } from "../../../product/domain/entities/product.entity";
-import { CreateProductInput } from "src/product/domain/dto/create-product.input";
-import { CreateProductCommand } from "src/product/application/commands/create-product/create-product.command";
+import { CreateProductInput } from "../../domain/dto/create-product.input";
+import { CreateProductCommand } from "../../application/commands/create-product/create-product.command";
+import { GetProductQuery } from "../../application/queries/get-product-by-sku/get-product-by-sku.query";
 
 @Resolver('Product')
 export class ProductResolver {
   constructor(
-    private readonly productUseCase: IGetProductBySkuUseCase,
+    private readonly queryBus: QueryBus,
     private readonly commandBus: CommandBus
   ) {}
 
   @Query(() => Product)
   getProductBySku(@Args('sku') sku: string): Promise<Product> {
-    return this.productUseCase.execute(sku)
+    return this.queryBus.execute(new GetProductQuery(sku))
   }
 
   @Mutation(() => Product)
