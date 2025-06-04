@@ -30,19 +30,29 @@ Antes de rodar o projeto, é necessário ter os seguintes pré-requisitos instal
 
 Clone este repositório em sua máquina local:
 
+_HTTPS_
+
 ```bash
-git clone https://github.com/usuario/projeto-ecommerce.git
-cd projeto-ecommerce
+git clone https://github.com/henriqueViana/fake-store-products-api.git
+cd fake-store-products-api.git
+```
+
+_SSH_
+
+```bash
+git clone git@github.com:henriqueViana/fake-store-products-api.git
+cd fake-store-products-api.git
 ```
 
 ### 2. Configuração do MongoDB e RabbitMQ com Docker
+
 O projeto utiliza o Docker para rodar a aplicação, o MongoDB e o RabbitMQ em containers, a partir de um docker-compose.yml e um Dockerfile já configurados. Para isso, basta rodar o seguinte comando:
 
 ```bash
 yarn docker:dev
 ```
 
-Isso vai subir o MongoDB na porta *27017* e o RabbitMQ na porta *15672* com as credenciais configuradas no arquivo *.env*
+Isso vai subir o MongoDB na porta _27017_ e o RabbitMQ na porta _15672_ com as credenciais configuradas no arquivo _.env_
 
 **Exemplo de arquivo .env**
 
@@ -57,3 +67,14 @@ MONGO_DB=meubanco
 
 E por fim, será executado o comando **yarn start:dev** que será responsável por subir a aplicação
 
+## Rodando o projeto
+
+Para a documentação está sendo utilizado o módulo chamado **Compodoc** como dev-dependency
+
+Executando o comando abaixo, irá gerar um diretório na raiz do projeto chamado **documentation** contendo todos os arquivos necessários
+
+```bash
+npx @compodoc/compodoc -p tsconfig.json -s
+```
+
+Após gerada a documentação, ficará disponível para visualização em: **http://localhost:8080**
