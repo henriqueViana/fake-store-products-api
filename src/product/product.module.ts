@@ -7,6 +7,7 @@ import { ProductMongoRepository } from './infrastructure/repositories/product-mo
 import { MongooseModule } from '@nestjs/mongoose'
 import { Product, ProductSchema } from './domain/entities/product.entity'
 import { CreateProductHandler } from './application/commands/create-product/create-product.handler';
+import { GetAllProductsHandler } from './application/queries/get-all-products/get-all-products.handler';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { CreateProductHandler } from './application/commands/create-product/crea
       useClass: ProductMongoRepository,
     },
     CreateProductHandler,
-    GetProductHandler
+    GetProductHandler,
+    GetAllProductsHandler
   ],
   exports: [ProductResolver]
 })

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { NotFoundException } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs'
 import { Product } from "../../../domain/entities/product.entity";
 import { IProductRepository } from "../../../infrastructure/repositories/product.repository.interface";
@@ -12,7 +12,7 @@ export class GetProductHandler implements IQueryHandler<GetProductQuery>{
     const { sku } = query
     const product = await this.productRepo.findBySku(query.sku)
 
-    if (!product || product.lenght === 0) {
+    if (!product || product.length === 0) {
       throw new NotFoundException(`Product with ${sku} not found`)
     }
 

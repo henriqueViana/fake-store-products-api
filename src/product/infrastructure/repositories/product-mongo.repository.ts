@@ -8,7 +8,11 @@ import { IProductRepository } from "./product.repository.interface";
 export class ProductMongoRepository implements IProductRepository {
   constructor(@InjectModel(Product.name) private model: Model<ProductDocument>) {}
 
-  async findBySku(sku: string) {
+  async findBySku(sku: string): Promise<Product[]> {
     return await this.model.find({ sku }).exec()
+  }
+
+  async findAll(): Promise<Product[]> {
+    return await this.model.find({}).exec()
   }
 }
