@@ -20,7 +20,7 @@ Antes de rodar o projeto, é necessário ter os seguintes pré-requisitos instal
 
 - [Docker](https://www.docker.com/get-started) (para rodar o MongoDB)
 - [Yarn](https://yarnpkg.com/) ou [npm](https://www.npmjs.com/) (gerenciadores de pacotes)
-- [Node.js](https://nodejs.org/) (versão >= 18)
+- [Node.js](https://nodejs.org/) (versão >= 22)
 
 ---
 
@@ -63,6 +63,11 @@ MONGO_PASSWORD=admin
 MONGO_HOST=mongodb
 MONGO_PORT=27017
 MONGO_DB=meubanco
+
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_access_key
+AWS_REGION=us-east-1
+AWS_S3_BUCKET=bucket_name
 ```
 
 E por fim, será executado o comando **yarn start:dev** que será responsável por subir a aplicação
