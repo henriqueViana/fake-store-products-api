@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose'
 import { join } from 'path'
 import { ProductModule } from './product/product.module';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -27,7 +28,8 @@ import { ProductModule } from './product/product.module';
       }),
       inject: [ConfigService],
     }),
-    ProductModule
+    ProductModule,
+    UploadModule
   ],
 })
 export class AppModule {}
