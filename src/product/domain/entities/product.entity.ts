@@ -19,6 +19,10 @@ export class Product {
   @Field(type => String)
   @Prop({ required: true, unique: true })
   sku: string
+
+  @Field(type => [String], { nullable: true })
+  @Prop({ type: [String], required: false })
+  images?: string[]
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

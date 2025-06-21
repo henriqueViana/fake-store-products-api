@@ -13,7 +13,7 @@ export class GetProductHandler implements IQueryHandler<GetProductQuery>{
     const product = await this.productRepo.findBySku(query.sku)
 
     if (!product || product.length === 0) {
-      throw new NotFoundException(`Product with ${sku} not found`)
+      throw new NotFoundException(`Product with sku ${sku} not found`)
     }
 
     return product[0]

@@ -17,7 +17,7 @@ import { UploadModule } from './upload/upload.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       debug: true,
-      playground: true
+      playground: true,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
